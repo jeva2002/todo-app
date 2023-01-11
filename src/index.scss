@@ -1,0 +1,15 @@
+@import "~bootstrap/scss/bootstrap";
+
+section {
+  width: 100px;
+
+  article {
+    .completed {
+      text-decoration: line-through;
+    }
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+}
