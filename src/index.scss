@@ -1,19 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
-$Bright-Blue: #3a7bfd;
-$Check-Background: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
-
-.bg {
-  position: absolute;
-  top: 0;
-  z-index: -1;
-  height: 100vh;
-}
-
 main {
   height: 95vh;
-  font-family: 'Josefin Sans', sans-serif;;
+  font-family: 'Josefin Sans', sans-serif;
+  height: 100vh;
 
   h1 {
     font-size: 50px;
@@ -25,33 +16,44 @@ main {
   section {
     width: 100px;
     border-radius: 7px;
-    box-shadow: 0px 5px 17px 6px rgba(55, 55, 55, 0.53);
 
-    article {      
+    article {
+      font-weight: 400;
       .completed {
         text-decoration: line-through;
       }
     }
 
-    h4 {
+    h4,
+    h5 {
       font-size: 16px;
       font-weight: 700;
     }
-    
+
     h4:hover {
-      filter: invert(60%) sepia(57%) saturate(7086%) hue-rotate(207deg) brightness(100%) contrast(104%);
+      filter: invert(60%) sepia(57%) saturate(7086%) hue-rotate(207deg)
+        brightness(100%) contrast(104%);
       cursor: pointer;
     }
-
   }
 }
 
 .dark {
-  section {
-    background-color: hsl(235, 24%, 19%);
+  background-image: url('./assets/bg-desktop-dark.jpg');
+  background-repeat: no-repeat;
+  background-color: hsl(235, 21%, 11%);
+
+  .radio {
+    border: 1px solid hsl(0, 0%, 33%);
   }
 
-  h4, h5 {
+  section {
+    background-color: hsl(235, 24%, 19%);
+    box-shadow: hsl(240, 23%, 5%) 0px 7px 29px 0px;
+  }
+
+  h4,
+  h5 {
     color: hsl(0, 0%, 56%);
   }
 
@@ -69,13 +71,22 @@ main {
   }
 }
 
-.ligth {
-  section {
-    background-color: hsl(0, 0%, 98%);
+.light {
+  background-image: url('./assets/bg-desktop-light.jpg');
+  background-repeat: no-repeat;
+
+  .radio {
+    border: 1px solid hsl(233, 11%, 84%);
   }
 
-  h4, h5 {
-    color: hsl(236, 9%, 61%)
+  section {
+    background-color: hsl(0, 0%, 98%);
+    box-shadow: hsl(233, 11%, 84%) 0px 7px 29px 0px;
+  }
+
+  h4,
+  h5 {
+    color: hsl(236, 9%, 61%);
   }
 
   input {
@@ -87,7 +98,7 @@ main {
     border-bottom: 1px solid hsl(233, 11%, 84%);
 
     .completed {
-      color: hsl(233, 11%, 84%)
+      color: hsl(233, 11%, 84%);
     }
   }
 }

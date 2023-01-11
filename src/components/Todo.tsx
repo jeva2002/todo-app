@@ -1,41 +1,37 @@
-import { useState, Dispatch, SetStateAction } from 'react';
-import { deleteTodo, modifyState } from '../functions/request';
+import { useState, useContext } from 'react';
+import { deleteTodo, getTodos, modifyState } from '../functions/request';
+import { getLeftItems, ITodo, ListContext } from '../view/Home';
+import Radio from './Radio';
 import close from '../assets/close-icon.svg';
-import { ITodo } from '../view/Home';
+
 
 interface IAppProps {
   id: string | number;
   text: string;
   state: string;
-  deleteTodo: Dispatch<SetStateAction<ITodo[] | never[]>>;
-  todoList: ITodo[] | never[];
-  leftItems: number;
-  setLeftItems: Dispatch<SetStateAction<number>>;
 }
 
 const Todo = (props: IAppProps) => {
-  const [isCompleted, setIsCompleted] = useState(
+  const [todoCompleted, setComplete] = useState(
     props.state === 'done' ? true : false
   );
 
+  const {setTodoList, setLeftItems, todoList} = useContext(ListContext)
+
+  const handleClick = () => {
+    setComplete(!todoCompleted);
+    modifyState(!todoCompleted ? 'done' : 'pending', props.id);
+    getTodos().then((res: ITodo[]) => {
+      setTodoList(res);
+      setLeftItems(getLeftItems(res));
+    });
+  }
+
   return (
-    <article className='d-flex align-items-center row py-2'>
-      <input
-        type='radio'
-        onClick={() => {
-          setIsCompleted(!isCompleted);
-          modifyState(isCompleted ? 'pending' : 'done', props.id);
-          props.setLeftItems(
-            isCompleted ? props.leftItems + 1 : props.leftItems - 1
-          );
-        }}
-        readOnly
-        checked={isCompleted}
-        className='col-3'
-        style={{ height: '25px', cursor: 'pointer' }}
-      />
+    <article className='d-flex align-items-center justify-content-between row py-2'>
+      <Radio handleClick={handleClick} initialState={todoCompleted}/>
       <h2
-        className={`col-7 pt-2 ${isCompleted ? 'completed' : ''}`}
+        className={`col-8 pt-2 ${todoCompleted ? 'completed' : ''}`}
         style={{ fontSize: '22px' }}
       >
         {props.text}
@@ -49,8 +45,13 @@ const Todo = (props: IAppProps) => {
           cursor: 'pointer',
         }}
         onClick={() => {
-          deleteTodo(props.id);
-          props.deleteTodo(props.todoList.filter((e) => e.id !== props.id));
+          deleteTodo(props.id).then(() => {
+            getTodos().then((res: ITodo[]) => {
+              setTodoList(res);
+              setLeftItems(getLeftItems(res));
+            });
+          })
+          setTodoList(todoList.filter((e: ITodo) => e.id !== props.id));
         }}
       />
     </article>

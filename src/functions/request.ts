@@ -35,12 +35,11 @@ const deleteTodo = async (id: string | number) => {
 
 const clearCompleted = (ids: (string | number)[] | ITodo[]) => {
   const recursive = (number = 0): any => {
-    console.log(number);
     if (ids.length === number) return;
     setTimeout(() => {
       instance.delete('/' + ids[number]);
       return recursive(number + 1);
-    }, 1000);
+    }, 500);
   };
   recursive();
 };

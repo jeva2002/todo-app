@@ -1,8 +1,6 @@
-import { useState } from 'react';
+import { useState, createContext, Dispatch, SetStateAction } from 'react';
 import CreateTodo from '../components/CreateTodo';
 import TodoList from '../components/TodoList';
-import desktopDark from '../assets/bg-desktop-dark.jpg';
-import desktopLight from '../assets/bg-desktop-light.jpg';
 import sun from '../assets/sun-icon.svg';
 import moon from '../assets/moon-icon.svg';
 
@@ -12,9 +10,23 @@ export interface ITodo {
   state: string;
 }
 
-export const getLeftItems = (todoList: ITodo[] | never[]) => {
-  return todoList.filter((e) => e.state === 'pending').length;
+export interface Context {
+  todoList: ITodo[] | never[] | any;
+  setTodoList: Dispatch<SetStateAction<ITodo[] | never[]>> | any;
+  leftItems: number | any;
+  setLeftItems: Dispatch<SetStateAction<number>>| any;
+}
+
+export const getLeftItems = (res: ITodo[]) => {
+  return res.filter((e: ITodo) => e.state === 'pending').length
 };
+
+export const ListContext = createContext<Context>({
+  todoList: [],
+  leftItems: 0,
+  setTodoList: () => {},
+  setLeftItems: () =>{}
+})
 
 function Home() {
   const [todoList, setTodoList] = useState<ITodo[] | never[]>([]);
@@ -23,38 +35,34 @@ function Home() {
   const [theme, setTheme] = useState('dark');
 
   return (
-    <>
-      <div className={`bg bg-${theme}`}>
-        <img src={theme === 'dark' ? desktopDark : desktopLight} alt='bg' />
-      </div>
-      <main className={`d-flex flex-column align-items-center justify-content-center ${theme}`}>
-        <div
-          className='d-flex justify-content-between py-2 px-5'
-          style={{ width: '600px' }}
+    <ListContext.Provider value={{todoList, setTodoList, leftItems, setLeftItems}}>
+      <div className={theme}>
+        <main
+          className={`d-flex flex-column align-items-center justify-content-center`}
         >
-          <h1 className='text-start'>TODO</h1>
-          <img
-            src={iconTheme}
-            alt='Change theme'
-            onClick={() => {
-              theme === 'dark' ? setIconTheme(moon) : setIconTheme(sun);
-              theme === 'dark' ? setTheme('ligth') : setIconTheme('dark');
-            }}
-            style={{
-              cursor: 'pointer',
-              height: '40px'
-            }}
-          />
-        </div>
-        <CreateTodo setTodoList={setTodoList} setLeftItems={setLeftItems} />
-        <TodoList
-          todoList={todoList}
-          setTodoList={setTodoList}
-          leftItems={leftItems}
-          setLeftItems={setLeftItems}
-        />
-      </main>
-    </>
+          <div
+            className='d-flex justify-content-between py-2 px-1'
+            style={{ width: '600px' }}
+          >
+            <h1 className='text-start'>TODO</h1>
+            <img
+              src={iconTheme}
+              alt='Change theme'
+              onClick={() => {
+                theme === 'dark' ? setIconTheme(moon) : setIconTheme(sun);
+                theme === 'dark' ? setTheme('light') : setTheme('dark');
+              }}
+              style={{
+                cursor: 'pointer',
+                height: '40px',
+              }}
+            />
+          </div>
+          <CreateTodo />
+          <TodoList />
+        </main>
+      </div>
+    </ListContext.Provider>
   );
 }
 

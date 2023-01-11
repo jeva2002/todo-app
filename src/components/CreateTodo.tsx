@@ -1,22 +1,29 @@
-import { useState, Dispatch, SetStateAction } from 'react';
+import { useState, Dispatch, SetStateAction, useContext } from 'react';
 import { createTodo, getTodos } from '../functions/request';
 import { ITodo } from '../view/Home';
 import { getLeftItems } from '../view/Home';
+import Radio from './Radio';
+import { ListContext } from '../view/Home';
 
-interface NewTodo {
+export interface NewTodo {
   text: string;
   state: boolean;
 }
 
-const CreateTodo = (props: {
-  setTodoList: Dispatch<SetStateAction<never[] | ITodo[]>>;
-  setLeftItems: Dispatch<SetStateAction<number>>;
-}) => {
-  const [isCompleted, setIsCompleted] = useState(false);
+const CreateTodo = () => {
   const [newTodo, setNewTodo] = useState<NewTodo>({
     text: '',
-    state: isCompleted,
+    state: false,
   });
+
+  const { setTodoList, setLeftItems } = useContext(ListContext);
+
+  const handleClickRadio = () => {
+    setNewTodo({
+      text: newTodo.text,
+      state: !newTodo.state,
+    });
+  };
 
   return (
     <section
@@ -28,30 +35,21 @@ const CreateTodo = (props: {
         onSubmit={async (e) => {
           e.preventDefault();
           await createTodo(newTodo.text, newTodo.state);
-          getTodos().then((res) => {
-            props.setTodoList(res);
-            props.setLeftItems(getLeftItems(res));
+          getTodos().then((res: ITodo[]) => {
+            setTodoList(res);
+            setLeftItems(getLeftItems(res));
           });
         }}
       >
+        <Radio handleClick={handleClickRadio} />
         <input
-          type='radio'
-          onClick={(e) => {
-            setIsCompleted(!isCompleted);
-            setNewTodo({
-              text: newTodo.text,
-              state: !isCompleted,
-            });
+          className={`col-9 ${newTodo.state ? 'completed' : ''}`}
+          style={{
+            fontSize: '22px',
+            border: 'none',
+            outline: 'none',
+            backgroundColor: 'transparent',
           }}
-          readOnly
-          checked={isCompleted}
-          className='col-3'
-          style={{ height: '25px', cursor: 'pointer' }}
-          name='radio'
-        />
-        <input
-          className={`col-9 ${isCompleted ? 'completed' : ''}`}
-          style={{ fontSize: '22px', border: 'none', outline: 'none', backgroundColor: 'transparent' }}
           placeholder='Create a new to do...'
           name='text'
           onChange={(e) => {

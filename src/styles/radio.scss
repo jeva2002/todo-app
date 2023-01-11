@@ -1,0 +1,19 @@
+.radio {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+}
+
+.radio::before {
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+}
+
+.radio:checked {
+  background: linear-gradient(to bottom, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}

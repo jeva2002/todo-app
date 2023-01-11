@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "@types/babel__core": "^7.1.20",
     "sass": "^1.57.1"
   }
 }
