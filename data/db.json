@@ -1,34 +1,9 @@
 {
   "posts": [
     {
-      "id": 1,
-      "text": "jugar alguna mondá",
-      "state": "done"
-    },
-    {
-      "id": 2,
-      "text": "Otra cosa",
-      "state": "done"
-    },
-    {
-      "id": 3,
-      "text": "Otro ejemplo",
-      "state": "done"
-    },
-    {
       "id": 4,
       "text": "Otro ejemplo",
       "state": "pending"
-    },
-    {
-      "id": 6,
-      "text": "Otro ejemplo",
-      "state": "done"
-    },
-    {
-      "id": 7,
-      "text": "Tal vez uno más",
-      "state": "done"
     },
     {
       "text": "asdsdasadda",
@@ -36,9 +11,19 @@
       "id": 8
     },
     {
-      "text": "otra wea",
+      "text": "dsadasdas",
       "state": "pending",
-      "id": 9
+      "id": 10
+    },
+    {
+      "text": "Otras vainas",
+      "state": "done",
+      "id": 14
+    },
+    {
+      "text": "asdfdasfd",
+      "state": "pending",
+      "id": 15
     }
   ]
 }

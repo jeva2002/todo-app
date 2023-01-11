@@ -17,7 +17,6 @@ const getTodos = async (filter?: string) => {
 };
 
 const createTodo = async (text: string, state: boolean) => {
-  console.log(state)
   return await instance.post('', {
     text: text,
     state: state ? 'done' : 'pending',

@@ -1,6 +1,7 @@
 import { useState, Dispatch, SetStateAction } from 'react';
 import { createTodo, getTodos } from '../functions/request';
 import { ITodo } from '../view/Home';
+import { getLeftItems } from '../view/Home';
 
 interface NewTodo {
   text: string;
@@ -9,6 +10,7 @@ interface NewTodo {
 
 const CreateTodo = (props: {
   setTodoList: Dispatch<SetStateAction<never[] | ITodo[]>>;
+  setLeftItems: Dispatch<SetStateAction<number>>;
 }) => {
   const [isCompleted, setIsCompleted] = useState(false);
   const [newTodo, setNewTodo] = useState<NewTodo>({
@@ -18,7 +20,7 @@ const CreateTodo = (props: {
 
   return (
     <section
-      className='container d-flex flex-column gap-1 my-3'
+      className='container d-flex flex-column gap-1 my-3 py-3'
       style={{ width: '600px' }}
     >
       <form
@@ -28,6 +30,7 @@ const CreateTodo = (props: {
           await createTodo(newTodo.text, newTodo.state);
           getTodos().then((res) => {
             props.setTodoList(res);
+            props.setLeftItems(getLeftItems(res));
           });
         }}
       >
@@ -48,7 +51,7 @@ const CreateTodo = (props: {
         />
         <input
           className={`col-9 ${isCompleted ? 'completed' : ''}`}
-          style={{ fontSize: '25px', border: 'none', outline: 'none' }}
+          style={{ fontSize: '22px', border: 'none', outline: 'none', backgroundColor: 'transparent' }}
           placeholder='Create a new to do...'
           name='text'
           onChange={(e) => {

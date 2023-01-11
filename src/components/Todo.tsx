@@ -19,7 +19,7 @@ const Todo = (props: IAppProps) => {
   );
 
   return (
-    <article className='d-flex align-items-center row'>
+    <article className='d-flex align-items-center row py-2'>
       <input
         type='radio'
         onClick={() => {
@@ -35,8 +35,8 @@ const Todo = (props: IAppProps) => {
         style={{ height: '25px', cursor: 'pointer' }}
       />
       <h2
-        className={`col-7 ${isCompleted ? 'completed' : ''}`}
-        style={{ fontSize: '25px' }}
+        className={`col-7 pt-2 ${isCompleted ? 'completed' : ''}`}
+        style={{ fontSize: '22px' }}
       >
         {props.text}
       </h2>
