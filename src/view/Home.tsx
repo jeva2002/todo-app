@@ -14,19 +14,19 @@ export interface Context {
   todoList: ITodo[] | never[] | any;
   setTodoList: Dispatch<SetStateAction<ITodo[] | never[]>> | any;
   leftItems: number | any;
-  setLeftItems: Dispatch<SetStateAction<number>>| any;
+  setLeftItems: Dispatch<SetStateAction<number>> | any;
 }
 
 export const getLeftItems = (res: ITodo[]) => {
-  return res.filter((e: ITodo) => e.state === 'pending').length
+  return res.filter((e: ITodo) => e.state === 'pending').length;
 };
 
 export const ListContext = createContext<Context>({
   todoList: [],
   leftItems: 0,
   setTodoList: () => {},
-  setLeftItems: () =>{}
-})
+  setLeftItems: () => {},
+});
 
 function Home() {
   const [todoList, setTodoList] = useState<ITodo[] | never[]>([]);
@@ -35,17 +35,20 @@ function Home() {
   const [theme, setTheme] = useState('dark');
 
   return (
-    <ListContext.Provider value={{todoList, setTodoList, leftItems, setLeftItems}}>
+    <ListContext.Provider
+      value={{ todoList, setTodoList, leftItems, setLeftItems }}
+    >
       <div className={theme}>
         <main
-          className={`d-flex flex-column align-items-center justify-content-center`}
+          className={`d-flex flex-column align-items-sm-center justify-content-sm-center p-sm-3 py-5`}
         >
           <div
-            className='d-flex justify-content-between py-2 px-1'
-            style={{ width: '600px' }}
+            className='d-flex justify-content-between pb-5 px-1 container'
+            style={{ maxWidth: '600px' }}
           >
             <h1 className='text-start'>TODO</h1>
             <img
+              className='me-3 theme'
               src={iconTheme}
               alt='Change theme'
               onClick={() => {

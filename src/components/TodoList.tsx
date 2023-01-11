@@ -20,19 +20,19 @@ const TodoList = () => {
 
   return (
     <section
-      className='container d-flex flex-column gap-1'
-      style={{ width: '600px' }}
+      className='container d-flex flex-column gap-1 todo-list'
+      style={{ maxWidth: '600px' }}
     >
       {renderTodoes(todoList, filter)}
       <div className='row d-flex py-3 px-1 justify-content-between align-items-center'>
-        <h5 className='col-3 text-center'>{leftItems} items left</h5>
-        <div className='col-5 d-flex justify-content-center align-items-center'>
+        <h5 className='col-3 text-center hidden'>{leftItems} items left</h5>
+        <div className='col-sm-5 d-flex justify-content-center align-items-center'>
           <Filter setFilter={setFilter} text='All' filter='' />
           <Filter setFilter={setFilter} text='Active' filter='pending' />
           <Filter setFilter={setFilter} text='Completed' filter='done' />
         </div>
         <h4
-          className='col-4 text-end pt-1'
+          className='col-4 text-end pt-1 hidden'
           onClick={() => {
             clearCompleted(
               todoList.filter((e: ITodo) => e.state === 'done').map((e: ITodo) => e.id)

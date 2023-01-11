@@ -28,10 +28,10 @@ const CreateTodo = () => {
   return (
     <section
       className='container d-flex flex-column gap-1 my-3 py-3'
-      style={{ width: '600px' }}
+      style={{ maxWidth: '600px' }}
     >
       <form
-        className='d-flex align-items-center row'
+        className='d-flex align-items-center row flex-no-wrap'
         onSubmit={async (e) => {
           e.preventDefault();
           await createTodo(newTodo.text, newTodo.state);
@@ -43,7 +43,7 @@ const CreateTodo = () => {
       >
         <Radio handleClick={handleClickRadio} />
         <input
-          className={`col-9 ${newTodo.state ? 'completed' : ''}`}
+          className={`col-sm-10 col-8 ${newTodo.state ? 'completed' : ''}`}
           style={{
             fontSize: '22px',
             border: 'none',

@@ -13,7 +13,7 @@ const Radio = (props: { handleClick: () => any; initialState? : boolean }) => {
       }}
       readOnly
       checked={isCompleted}
-      className='col-1 mx-4 radio'
+      className='col-1 mx-sm-4 ms-3 radio'
       style={{ cursor: 'pointer' }}
     />
   );
