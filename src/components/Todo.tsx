@@ -1,7 +1,7 @@
 import { useState, Dispatch, SetStateAction } from 'react';
 import { deleteTodo, modifyState } from '../functions/request';
 import close from '../assets/close-icon.svg';
-import { ITodo } from './TodoList';
+import { ITodo } from '../view/Home';
 
 interface IAppProps {
   id: string | number;

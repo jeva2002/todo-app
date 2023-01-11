@@ -1,6 +1,6 @@
-import { ITodo } from './TodoList';
 import { Dispatch, SetStateAction } from 'react';
 import Todo from './Todo';
+import { ITodo } from '../view/Home';
 
 const renderTodoes = (
   todoList: ITodo[] | never[],

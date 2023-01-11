@@ -18,12 +18,7 @@
     {
       "id": 4,
       "text": "Otro ejemplo",
-      "state": "done"
-    },
-    {
-      "id": 5,
-      "text": "Otro ejemplo",
-      "state": "done"
+      "state": "pending"
     },
     {
       "id": 6,
@@ -33,7 +28,17 @@
     {
       "id": 7,
       "text": "Tal vez uno más",
-      "state": "pending"
+      "state": "done"
+    },
+    {
+      "text": "asdsdasadda",
+      "state": "pending",
+      "id": 8
+    },
+    {
+      "text": "otra wea",
+      "state": "pending",
+      "id": 9
     }
   ]
 }

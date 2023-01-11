@@ -1,14 +1,20 @@
-import CreateTodo from "../components/CreateTodo";
-import TodoList from "../components/TodoList";
+import { useState } from 'react';
+import CreateTodo from '../components/CreateTodo';
+import TodoList from '../components/TodoList';
 
-export interface IAppProps {
+export interface ITodo {
+  id: string | number;
+  text: string;
+  state: string;
 }
 
-function Home (props: IAppProps) {
+function Home() {
+  const [todoList, setTodoList] = useState<ITodo[] | never[]>([]);
+
   return (
     <>
-      <CreateTodo />
-      <TodoList />
+      <CreateTodo setTodoList={setTodoList}/>
+      <TodoList todoList={todoList} setTodoList={setTodoList}/>
     </>
   );
 }
