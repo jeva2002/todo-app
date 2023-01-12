@@ -49,11 +49,11 @@ const CreateTodo = () => {
             border: 'none',
             outline: 'none',
             backgroundColor: 'transparent',
+            appearance: 'none',
           }}
           placeholder='Create a new to do...'
           name='text'
           onChange={(e) => {
-            console.log();
             setNewTodo({
               text: e.target.value,
               state: newTodo.state,

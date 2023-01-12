@@ -38,7 +38,7 @@ function Home() {
     <ListContext.Provider
       value={{ todoList, setTodoList, leftItems, setLeftItems }}
     >
-      <div className={theme}>
+      <div className={theme + ' p-3'}>
         <main
           className={`d-flex flex-column align-items-sm-center justify-content-sm-center p-sm-3 py-5`}
         >

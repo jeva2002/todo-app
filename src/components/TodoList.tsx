@@ -7,7 +7,6 @@ import { getLeftItems } from '../view/Home';
 import { ListContext } from '../view/Home';
 
 const TodoList = () => {
-
   const [filter, setFilter] = useState('');
   const {setTodoList, setLeftItems, todoList, leftItems } = useContext(ListContext);
 

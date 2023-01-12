@@ -1,29 +1,19 @@
 {
   "posts": [
     {
-      "text": "dsadasdsads",
+      "text": "Leer algo",
       "state": "pending",
       "id": 1
     },
     {
-      "text": "dsadasdsads",
-      "state": "pending",
-      "id": 2
-    },
-    {
-      "text": "dsadasdsads",
+      "text": "Hacer ejercicio",
       "state": "pending",
       "id": 3
     },
     {
-      "text": "dsadasdsads",
+      "text": "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
       "state": "pending",
-      "id": 17
-    },
-    {
-      "text": "dsadasdsads",
-      "state": "pending",
-      "id": 18
+      "id": 4
     }
   ]
 }
