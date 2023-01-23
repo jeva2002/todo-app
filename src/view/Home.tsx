@@ -40,7 +40,7 @@ function Home() {
     >
       <div className={theme + ' p-3'}>
         <main
-          className={`d-flex flex-column align-items-sm-center justify-content-sm-center p-sm-3 py-5`}
+          className={`container-fluid d-flex flex-column align-items-sm-center justify-content-sm-center p-sm-3 py-5`}
         >
           <div
             className='d-flex justify-content-between pb-5 px-1 container'

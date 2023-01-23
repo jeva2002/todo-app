@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import { ITodo } from '../view/Home';
 
 const instance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3000/posts',
+  baseURL: 'http://localhost:4000/posts',
 });
 
 const getTodos = async (filter?: string) => {

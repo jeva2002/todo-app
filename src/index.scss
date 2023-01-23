@@ -2,9 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
 main {
-  height: 95vh;
+  height: 98vh;
   font-family: 'Josefin Sans', sans-serif;
-  height: 100vh;
   position: relative;
 
   h1 {
@@ -64,6 +63,7 @@ main {
 .dark {
   background-image: url('./assets/bg-desktop-dark.jpg');
   background-repeat: no-repeat;
+  background-size: contain;
   background-color: hsl(235, 21%, 11%);
 
   .todo-list::-webkit-scrollbar-thumb {
@@ -105,8 +105,10 @@ main {
 }
 
 .light {
+  width: 100vw;
   background-image: url('./assets/bg-desktop-light.jpg');
   background-repeat: no-repeat;
+  background-size: contain;
 
   .todo-list::-webkit-scrollbar-thumb {
     background-color: hsl(233, 11%, 84%);
