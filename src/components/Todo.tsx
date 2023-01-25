@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
-import { deleteTodo, getTodos, modifyState } from '../functions/request';
-import { getLeftItems, ITodo, ListContext } from '../view/Home';
+import { deleteTodo, modifyState } from '../functions/request';
+import { ListContext } from '../view/Home';
 import Radio from './Radio';
 import close from '../assets/close-icon.svg';
 
@@ -15,13 +15,12 @@ const Todo = (props: IAppProps) => {
     props.state === 'done' ? true : false
   );
 
-  const { setTodoList, setModify, todoList } = useContext(ListContext);
+  const { setModify } = useContext(ListContext);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     setComplete(!todoCompleted);
-    modifyState(!todoCompleted ? 'done' : 'pending', props.id).then(() => {
-      setModify(value => !value)
-    })
+    await modifyState(!todoCompleted ? 'done' : 'pending', props.id);
+    setModify((value) => !value);
   };
 
   return (
@@ -38,12 +37,12 @@ const Todo = (props: IAppProps) => {
           style={{
             width: '40px',
             cursor: 'pointer',
-            position: 'relative', 
-            top: '8px'
+            position: 'relative',
+            top: '8px',
           }}
-          onClick={() => {
-            deleteTodo(props.id)
-            setModify(value => !value)
+          onClick={async () => {
+            await deleteTodo(props.id);
+            setModify((value) => !value);
           }}
         />
       </figure>

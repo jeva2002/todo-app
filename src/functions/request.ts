@@ -6,42 +6,62 @@ const instance: AxiosInstance = axios.create({
 });
 
 const getTodos = async (filter?: string) => {
-  if (filter) {
+  try {
+    if (filter) {
+      return await (
+        await instance.get(`?state=${filter}`)
+      ).data;
+    }
     return await (
-      await instance.get(`?state=${filter}`)
+      await instance.get('')
     ).data;
+  } catch (error) {
+    console.log(error)
   }
-  return await (
-    await instance.get('')
-  ).data;
 };
 
 const createTodo = async (text: string, state: boolean) => {
-  return await instance.post('', {
-    text: text,
-    state: state ? 'done' : 'pending',
-  });
+  try {
+    return await instance.post('', {
+      text: text,
+      state: state ? 'done' : 'pending',
+    });
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 const modifyState = async (todoState: string, id: string | number) => {
-  return await instance.patch('/' + id, {
-    state: todoState,
-  });
+  try {
+    return await instance.patch('/' + id, {
+      state: todoState,
+    });
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 const deleteTodo = async (id: string | number) => {
-  return await instance.delete('/' + id);
+  try {
+    return await instance.delete('/' + id);
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 const clearCompleted = (ids: (string | number)[] | ITodo[]) => {
-  const recursive = (number = 0): any => {
-    if (ids.length === number) return;
-    setTimeout(() => {
-      instance.delete('/' + ids[number]);
-      return recursive(number + 1);
-    }, 500);
-  };
-  recursive();
+  try {
+    const recursive = (number = 0): any => {
+      if (ids.length === number) return;
+      setTimeout(() => {
+        instance.delete('/' + ids[number]);
+        return recursive(number + 1);
+      }, 500);
+    };
+    recursive();
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 export { getTodos, createTodo, modifyState, deleteTodo, clearCompleted };

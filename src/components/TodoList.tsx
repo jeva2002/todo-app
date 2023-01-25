@@ -1,22 +1,13 @@
-import { useEffect, useState, useContext } from 'react';
-import { clearCompleted, getTodos } from '../functions/request';
+import { useState, useContext } from 'react';
+import { clearCompleted } from '../functions/request';
 import Filter from './Filter';
 import renderTodoes from './RenderTodoes';
 import { ITodo } from '../view/Home';
-import { getLeftItems } from '../view/Home';
 import { ListContext } from '../view/Home';
 
 const TodoList = () => {
   const [filter, setFilter] = useState('');
-  const { setTodoList, setLeftItems, todoList, leftItems, setModify } =
-    useContext(ListContext);
-
-  useEffect(() => {
-    getTodos().then((res) => {
-      setTodoList(res);
-      setLeftItems(getLeftItems(res));
-    });
-  }, []);
+  const { todoList, leftItems, setModify } = useContext(ListContext);
 
   return (
     <section
@@ -39,7 +30,9 @@ const TodoList = () => {
                 .filter((e: ITodo) => e.state === 'done')
                 .map((e: ITodo) => e.id)
             );
-            setModify(value => !value)
+            setTimeout(() => {
+              setModify(value => !value)
+            }, 3000)
           }}
         >
           Clear Completed

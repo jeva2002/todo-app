@@ -48,10 +48,19 @@ function Home() {
 
   useEffect(() => {
     getTodos().then((res) => {
-      setTodoList(res)
+      setTodoList(res);
       setLeftItems(getLeftItems(res));
     });
-  }, [todoList, setTodoList, modify]);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      getTodos().then((res) => {
+        setTodoList(res);
+        setLeftItems(getLeftItems(res));
+      });
+    }, 300)
+  }, [modify, setModify]);
 
   return (
     <ListContext.Provider

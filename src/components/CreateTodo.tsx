@@ -1,7 +1,5 @@
 import { useState, useContext } from 'react';
-import { createTodo, getTodos } from '../functions/request';
-import { ITodo } from '../view/Home';
-import { getLeftItems } from '../view/Home';
+import { createTodo } from '../functions/request';
 import Radio from './Radio';
 import { ListContext } from '../view/Home';
 
@@ -38,7 +36,7 @@ const CreateTodo = () => {
           setModify(value => !value)
         }}
       >
-        <Radio handleClick={handleClickRadio} />
+        <Radio handleClick={handleClickRadio} initialState={newTodo.state} />
         <input
           className={`col-sm-10 col-8 ${newTodo.state ? 'completed' : ''}`}
           style={{

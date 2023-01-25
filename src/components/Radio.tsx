@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/radio.scss';
 
-const Radio = (props: { handleClick: () => any; initialState?: boolean }) => {
-  const [isCompleted, setIsCompleted] = useState(props.initialState || false);
+const Radio = (props: { handleClick: () => any; initialState: boolean }) => {
+  const [isCompleted, setIsCompleted] = useState<boolean>(props.initialState);
+
+  useEffect(() => {
+    setIsCompleted(props.initialState)
+  }, [props.initialState])
 
   return (
     <input
