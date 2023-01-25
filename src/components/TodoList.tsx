@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext} from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { clearCompleted, getTodos } from '../functions/request';
 import Filter from './Filter';
 import renderTodoes from './RenderTodoes';
@@ -8,7 +8,8 @@ import { ListContext } from '../view/Home';
 
 const TodoList = () => {
   const [filter, setFilter] = useState('');
-  const {setTodoList, setLeftItems, todoList, leftItems } = useContext(ListContext);
+  const { setTodoList, setLeftItems, todoList, leftItems, setModify } =
+    useContext(ListContext);
 
   useEffect(() => {
     getTodos().then((res) => {
@@ -34,9 +35,11 @@ const TodoList = () => {
           className='col-4 text-end pt-1 hidden'
           onClick={() => {
             clearCompleted(
-              todoList.filter((e: ITodo) => e.state === 'done').map((e: ITodo) => e.id)
+              todoList
+                .filter((e: ITodo) => e.state === 'done')
+                .map((e: ITodo) => e.id)
             );
-            setTodoList(todoList.filter((e:ITodo) => e.state !== 'done'));
+            setModify(value => !value)
           }}
         >
           Clear Completed

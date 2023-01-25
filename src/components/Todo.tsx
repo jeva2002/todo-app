@@ -15,15 +15,12 @@ const Todo = (props: IAppProps) => {
     props.state === 'done' ? true : false
   );
 
-  const { setTodoList, setLeftItems, todoList } = useContext(ListContext);
+  const { setTodoList, setModify, todoList } = useContext(ListContext);
 
   const handleClick = () => {
     setComplete(!todoCompleted);
     modifyState(!todoCompleted ? 'done' : 'pending', props.id).then(() => {
-      getTodos().then((res: ITodo[]) => {
-        setLeftItems(getLeftItems(res));
-        setTodoList(res);
-      });
+      setModify(value => !value)
     })
   };
 
@@ -45,13 +42,8 @@ const Todo = (props: IAppProps) => {
             top: '8px'
           }}
           onClick={() => {
-            deleteTodo(props.id).then(() => {
-              getTodos().then((res: ITodo[]) => {
-                setTodoList(res);
-                setLeftItems(getLeftItems(res));
-              });
-            });
-            setTodoList(todoList.filter((e: ITodo) => e.id !== props.id));
+            deleteTodo(props.id)
+            setModify(value => !value)
           }}
         />
       </figure>

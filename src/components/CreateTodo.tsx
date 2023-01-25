@@ -16,7 +16,7 @@ const CreateTodo = () => {
     state: false,
   });
 
-  const { setTodoList, setLeftItems } = useContext(ListContext);
+  const { setModify } = useContext(ListContext);
 
   const handleClickRadio = () => {
     setNewTodo({
@@ -35,10 +35,7 @@ const CreateTodo = () => {
         onSubmit={async (e) => {
           e.preventDefault();
           await createTodo(newTodo.text, newTodo.state);
-          getTodos().then((res: ITodo[]) => {
-            setTodoList(res);
-            setLeftItems(getLeftItems(res));
-          });
+          setModify(value => !value)
         }}
       >
         <Radio handleClick={handleClickRadio} />

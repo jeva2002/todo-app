@@ -110,6 +110,10 @@ main {
   background-repeat: no-repeat;
   background-size: contain;
 
+  h1 {
+    color: #000;
+  }
+
   .todo-list::-webkit-scrollbar-thumb {
     background-color: hsl(233, 11%, 84%);
     border-radius: 20px;

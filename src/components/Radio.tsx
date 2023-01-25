@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import '../styles/radio.scss'
+import '../styles/radio.scss';
 
-const Radio = (props: { handleClick: () => any; initialState? : boolean }) => {
+const Radio = (props: { handleClick: () => any; initialState?: boolean }) => {
   const [isCompleted, setIsCompleted] = useState(props.initialState || false);
 
   return (
