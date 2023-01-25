@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import { ITodo } from '../view/Home';
 
 const instance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:4000/posts',
+  baseURL: 'https://json-server-vercel-blue.vercel.app/posts',
 });
 
 const getTodos = async (filter?: string) => {
